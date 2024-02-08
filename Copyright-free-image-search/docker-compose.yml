@@ -1,0 +1,22 @@
+version: '3'
+
+services: 
+
+    backend:
+        build: ./server-side
+        container_name: NCI-backend
+        env_file: ./server-side/.env
+        ports: 
+            - 9000:9000
+        stdin_open: true
+    
+    frontend:
+        depends_on: 
+            - backend
+        build: ./client-side
+        container_name: NCI-frontend
+        env_file: ./client-side/.env
+        ports: 
+            - 3000:3000        
+        stdin_open: true
+        
